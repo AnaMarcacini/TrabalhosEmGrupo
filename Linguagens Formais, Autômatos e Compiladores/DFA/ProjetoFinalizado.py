@@ -1,3 +1,13 @@
+"""
+Ana Helena Marcacini RA: 20.01305-0
+
+Ettore Padula Dalben RA: 20.00387-0
+
+Pedro Henrique Hein RA: 20.00134-7
+
+
+"""
+
 
 
 def simulardfa(dfa, entrada):
@@ -12,6 +22,7 @@ def simulardfa(dfa, entrada):
         if c not in dfa['sigma']:   #caso digite algo diferente de 0 e 1
             print("ERRO! ERRO! ERRO!\nO símbolo ", c, "não pertence ao alfabeto do autômato!")
             entrada.insert(0,c)
+            print('A cadeia', entradaint, 'foi rejeitada pelo autômato!')
             break
         if estado not in dfa['states']: # caiu em um estado que não existe no autômato
             print('O estado', estado,
@@ -19,7 +30,7 @@ def simulardfa(dfa, entrada):
             break
         try:
             estadoanterior = estado
-            estado = dfa['delta'][estado, c] #mudança de estado não pode ter break // DANDO ERRO NÂO MUDA O ESTADO]
+            estado = dfa['delta'][estado, c] #mudança de estado não pode ter break 
 
             #Print
             print('(', estadoanterior, ', \'', c, '\') --> ',estado)
