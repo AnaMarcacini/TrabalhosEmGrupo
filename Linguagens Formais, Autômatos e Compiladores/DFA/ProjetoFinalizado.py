@@ -2,9 +2,12 @@
 
 def simulardfa(dfa, entrada):
     print(dfa['initial_state'])
-    estado = dfa(['initial_state'])
+    estado = dfa['initial_state']
     aceitar = False
-
+    print(entrada[0])
+    print(entrada[1])
+    print(entrada[2])
+    print(entrada[3])
     while len(entrada) > 0:
         c = entrada.pop(0)
 
@@ -43,11 +46,11 @@ if __name__ == '__main__':
         #print(dfa['delta'])
         #print(dfa['delta'][(1,'1')])
 
-    entrada = input("Digite a cadeia ou digite 2 para encerrar o programa: ")
+    entrada = input("Digite a cadeia ou digite 2 para encerrar o programa:  ")
     while entrada != '2':
         simulardfa(dfa, entrada)
         #print(entrada != '2')
         
-        entrada = input("Digite a cadeia ou digite 2 para encerrar o programa")
+        entrada = input("Digite a cadeia ou digite 2 para encerrar o programa:  ")
 
 
