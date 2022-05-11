@@ -1,36 +1,35 @@
 
 
 def simulardfa(dfa, entrada):
-    print(dfa['initial_state'])
     estado = dfa['initial_state']
     aceitar = False
-    print(entrada[0])
-    print(entrada[1])
-    print(entrada[2])
     #trocar lista entrada por entrada
-    for i in len(entrada):
-        listEntrada = entrada[i]
-    while len(listEntrada) > 0:
-        c = listEntrada.pop(0)
+    entrada=list(entrada)
+    while len(entrada) > 0:
+        c = entrada.pop(0)
 
-        if c not in dfa(['sigma']):
+        if c not in dfa['sigma']:   #caso digite algo diferente de 0 e 1
             print("ERRO! ERRO! ERRO!\nO símbolo ", c, "não pertence ao alfabeto do autômato!")
-            listEntrada.insert(0,c)
+            entrada.insert(0,c)
             break
-        if estado not in dfa(['states']):
+        if estado not in dfa['states']: # caiu em um estado que não existe no autômato
             print('O estado', estado,
                 'não pertence ao conjunto de estados do autômato!')
             break
         try:
-            estado = dfa(['delta'])[estado, c]
+            estado = dfa['delta'][estado, c] #mudança de estado não pode ter break // DANDO ERRO NÂO MUDA O ESTADO
         except:
             print('Não foi possível realizar a transição do estado', estado, 'com entrada', c)
             break
-        if (estado in dfa(['final_states'])) and (len(listEntrada) == 0):
+
+
+        #não passando por qualquer break significa que chegamos no estado final
+        #Avaliar se é aceito ou não
+        if (estado in dfa['final_states']) and (len(entrada) == 0):
             aceitar = True
         if aceitar ==True:
             print('A cadeia', entrada, 'foi aceita pelo autômato!')
-        else:
+        elif (len(entrada) == 0):                                   #(len(entrada) == 0) add para não repetir todas as vezes (NÂO ESTA NO COD DO PROF)
             print('A cadeia', entrada, 'foi rejeitada pelo autômato!')
 
 
@@ -40,7 +39,7 @@ if __name__ == '__main__':
 
     with open('m.dfa') as dfa_file:
         dfa_data = dfa_file.read()
-        print(dfa_data)
+        #print(dfa_data)
         dfa = eval(dfa_data)
         # Para conferir o conteúdo
         #print(dfa['initial_state'])
@@ -53,6 +52,6 @@ if __name__ == '__main__':
         simulardfa(dfa, entrada)
         #print(entrada != '2')
         
-        entrada = input("Digite a cadeia ou digite 2 para encerrar o programa:  ")
+        entrada = input("\nDigite a cadeia ou digite 2 para encerrar o programa:  ")
 
 
