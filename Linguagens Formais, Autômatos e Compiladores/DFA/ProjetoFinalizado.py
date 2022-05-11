@@ -4,6 +4,7 @@ def simulardfa(dfa, entrada):
     estado = dfa['initial_state']
     aceitar = False
     #trocar lista entrada por entrada
+    entradaint = entrada
     entrada=list(entrada)
     while len(entrada) > 0:
         c = entrada.pop(0)
@@ -17,7 +18,14 @@ def simulardfa(dfa, entrada):
                 'não pertence ao conjunto de estados do autômato!')
             break
         try:
-            estado = dfa['delta'][estado, c] #mudança de estado não pode ter break // DANDO ERRO NÂO MUDA O ESTADO
+            estadoanterior = estado
+            estado = dfa['delta'][estado, c] #mudança de estado não pode ter break // DANDO ERRO NÂO MUDA O ESTADO]
+
+            #Print
+            print('(', estadoanterior, ', \'', c, '\') --> ',estado)
+
+
+
         except:
             print('Não foi possível realizar a transição do estado', estado, 'com entrada', c)
             break
@@ -28,9 +36,9 @@ def simulardfa(dfa, entrada):
         if (estado in dfa['final_states']) and (len(entrada) == 0):
             aceitar = True
         if aceitar ==True:
-            print('A cadeia', entrada, 'foi aceita pelo autômato!')
+            print('A cadeia', entradaint, 'foi aceita pelo autômato!')
         elif (len(entrada) == 0):                                   #(len(entrada) == 0) add para não repetir todas as vezes (NÂO ESTA NO COD DO PROF)
-            print('A cadeia', entrada, 'foi rejeitada pelo autômato!')
+            print('A cadeia', entradaint, 'foi rejeitada pelo autômato!')
 
 
 
