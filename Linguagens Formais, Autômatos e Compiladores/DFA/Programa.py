@@ -22,4 +22,7 @@ def simular_dfa(dfa, entrada):
             break
         if (estado in dfa(['final_states'])) and (len(entrada) == 0):
             aceitar = True
-        
+        if aceitar ==True:
+            print('A cadeia', entrada, 'foi aceita pelo autômato!')
+        else:
+            print('A cadeia', entrada, 'foi rejeitada pelo autômato!')
