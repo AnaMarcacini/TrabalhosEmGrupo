@@ -1,7 +1,7 @@
 
 
 def simular_dfa(dfa, entrada):
-    estado = dfa(['initial_state'])
+    estado = dfa['initial_state']
     aceitar = False
 
     while len(entrada) > 0:

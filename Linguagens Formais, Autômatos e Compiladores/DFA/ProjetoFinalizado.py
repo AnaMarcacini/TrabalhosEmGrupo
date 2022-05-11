@@ -7,13 +7,15 @@ def simulardfa(dfa, entrada):
     print(entrada[0])
     print(entrada[1])
     print(entrada[2])
-    print(entrada[3])
-    while len(entrada) > 0:
-        c = entrada.pop(0)
+    #trocar lista entrada por entrada
+    for i in len(entrada):
+        listEntrada = entrada[i]
+    while len(listEntrada) > 0:
+        c = listEntrada.pop(0)
 
         if c not in dfa(['sigma']):
             print("ERRO! ERRO! ERRO!\nO símbolo ", c, "não pertence ao alfabeto do autômato!")
-            entrada.insert(0,c)
+            listEntrada.insert(0,c)
             break
         if estado not in dfa(['states']):
             print('O estado', estado,
@@ -24,7 +26,7 @@ def simulardfa(dfa, entrada):
         except:
             print('Não foi possível realizar a transição do estado', estado, 'com entrada', c)
             break
-        if (estado in dfa(['final_states'])) and (len(entrada) == 0):
+        if (estado in dfa(['final_states'])) and (len(listEntrada) == 0):
             aceitar = True
         if aceitar ==True:
             print('A cadeia', entrada, 'foi aceita pelo autômato!')
