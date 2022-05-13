@@ -44,7 +44,7 @@ int main(){
                         lista[x].anterior = -0;
                         lista[x].proximo = -0;
                     }
-                    
+
                     printf("Lista padrão? [s/n]\n");
                     scanf("%s", &validaSTR);
 
@@ -219,21 +219,21 @@ void imprimir(Arranjo arranjo[]){
         }
 
         auxint = aux.proximo;
-        printf("%i\t§", auxint);
+        printf("%i\t", auxint);
         printf("\n§Chave:\t\t");
 
         for(int x = init; arranjo[x].proximo != -1; x = arranjo[x].proximo){
             printf("%i\t", arranjo[x].chave);
         }
 
-        printf("%i\t§", aux.chave);
+        printf("%i\t", aux.chave);
         printf("\n§Anterior:\t");
 
         for(int x = init; arranjo[x].proximo != -1; x = arranjo[x].proximo){
             printf("%i\t", arranjo[x].anterior);
         }
         
-        printf("%i\t§", aux.anterior);
+        printf("%i\t", aux.anterior);
         printf("\n=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=\n");
     } else{
         printf("A lista está vazia");
