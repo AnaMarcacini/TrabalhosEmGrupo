@@ -10,16 +10,7 @@ public class Main {
 		// Cria o buffer compartilhado
 		Buffer buffer = new Buffer();
 
-		//lista de valores
-		int valores[] = new int[4];
-		valores[0] = 10;
-		valores[1] = 20;
-		valores[2] = 50;
-		valores[3] = 100;
-		int valor;
-
-		valor = valores[ThreadLocalRandom.current().nextInt(valores.length)];
-//_________________________________________________________________________________________________________________
+		_________________________________________________________________________________________________________________
 
 
 
