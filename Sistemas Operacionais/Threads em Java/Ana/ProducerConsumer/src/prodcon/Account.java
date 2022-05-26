@@ -1,12 +1,35 @@
 package prodcon;
 
-public class Account {
+public class Account extends Thread {
     private float balance; //saldo
-    Buffer buffer;
+    Buffer buffer;// Referência para buffer compartilhado
+
+
+	// Construtor
+	public Account(Buffer buffer, String p, float saldoInicial) {
+		super(p); // chama o construtor de Thread e passa o nome do parâmetro
+		this.buffer = buffer;
+        this.balance = saldo;
+	}
+
+
+
+
+
+
+
 
     public String visualizarSaldo(){
              return(String.format("R$.2f",balance));
          }
+// Referência para buffer compartilhado
+	Buffer buffer;
+
+	// Construtor
+	public Producer(Buffer buffer, String p) {
+		super(p); // chama o construtor de Thread e passa o nome do parâmetro
+		this.buffer = buffer;
+	}
 
 
 
