@@ -8,8 +8,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Buffer {
 	// Dados manipulados pelo consumidor e produtor
-	// Uma fila de capacidade 10 números inteiros
-	private static final int CAPACITY = 10;
+	// Uma fila de capacidade 1 números
+	private static final float CAPACITY = 1;
 	private final Queue<Integer> queue = new LinkedList<>();
 
 	// Variável de lock para acessar a fila compartilhada
@@ -23,7 +23,9 @@ public class Buffer {
 	public void put(Integer number) throws InterruptedException {
 		lock.lock();
 		try {
-			// Se buffer estiver cheio, aguarda o consumidor consumir algum número
+			// Se buffer estiver cheio, aguarda o consumidor consumir algum número 
+			
+			// devemos mudar a condição para o numero do bufer maior que o pedido
 			while (queue.size() == CAPACITY) {
 				System.out.println(Thread.currentThread().getName() +
 						" : Buffer cheio, aguardando...");

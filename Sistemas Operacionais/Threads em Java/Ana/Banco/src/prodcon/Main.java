@@ -7,23 +7,25 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		// Cria o buffer compartilhado
-		Buffer buffer = new Buffer();
+		// Cria o buffer compartilhado // no nosso caso seria um por conta
+		//Buffer buffer = new Buffer();
 
-		_________________________________________________________________________________________________________________
+		//_________________________________________________________________________________________________________________
+
+		Account ac1 = new Account("ContaMariaEPaulo", 1000);
+		Cliente cliente[] = {
+			new Cliente("Augustus", ac1),
+			new Cliente("Lucius", ac1),
+			new Cliente("Claudius", ac1),
+			new Cliente("Tiberius", ac1)};
 
 
-
-		// Cria as threads de produtor e consumidor
-		Producer p1 = new Producer(buffer, "PRODUTOR 1");
-		Producer p2 = new Producer(buffer, "PRODUTOR 2");
-		Consumer c1 = new Consumer(buffer, "CONSUMIDOR 1");
-		Consumer c2 = new Consumer(buffer, "CONSUMIDOR 2");
 		// Inicializa as threads
-		p1.start();
-		p2.start();
-		c1.start();
-		c2.start();
+
+		//c1.start(); nn sei dizer se é preciso ja que tanto o retirar quanto a depositar estão no account
+		//c2.start(); 
+		ac1.start();
+		ac2.start();
 	}
 
 }
