@@ -19,13 +19,12 @@ public class Main {
 			new Cliente("Claudius", ac1),
 			new Cliente("Tiberius", ac1)};
 
+// criar função de pausa -- modelo professor
 
-		// Inicializa as threads
-
-		//c1.start(); nn sei dizer se é preciso ja que tanto o retirar quanto a depositar estão no account
-		//c2.start(); 
-		ac1.start();
-		ac2.start();
+			
+			for (Cliente customer : cliente) {
+			customer.start();
+			}
 	}
 
 }
