@@ -3,14 +3,19 @@ package prodcon;
 public class Account extends Thread {
     private float balance; //saldo
     Buffer buffer;// Referência para buffer compartilhado
-
+    private int nclientes;
 
 	// Construtor
-	public Account(Buffer buffer, String p, float saldoInicial) {
-		super(p); // chama o construtor de Thread e passa o nome do parâmetro
-		this.buffer = buffer;
-        this.balance = saldo;
+	public Account(String nomeConta, float saldoInicial) {
+		super(nomeConta); // chama o construtor de Thread e passa o nome do parâmetro
+		this.buffer = new Buffer();
+        this.balance = saldoInicial;
+        System.out.println("Conta criada com saldo inicial de: ", this.balance);
 	}
+
+
+
+
 
 
 
@@ -22,16 +27,6 @@ public class Account extends Thread {
     public String visualizarSaldo(){
              return(String.format("R$.2f",balance));
          }
-// Referência para buffer compartilhado
-	Buffer buffer;
-
-	// Construtor
-	public Producer(Buffer buffer, String p) {
-		super(p); // chama o construtor de Thread e passa o nome do parâmetro
-		this.buffer = buffer;
-	}
-
-
 
     public boolean depositar(double valor){
         //if(valor < 0) 
@@ -46,6 +41,34 @@ public class Account extends Thread {
      this.balance -= valor;
      return true;
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ public int getNclientes() {
+    return nclientes;
+}
+
+public void setNclientes(int nclientes) {
+    this.nclientes = nclientes;
+}
+
 
 
 
