@@ -6,6 +6,9 @@
 #########################################################################
 
 
+from ctypes.wintypes import PINT
+
+
 file1 = open('code_imt.txt', 'r')
 Lines = file1.readlines()
 
@@ -18,7 +21,9 @@ conversion = {"HLT":" : 00",
               "ADD":" : 4",
               "ADDI":" : 5",
               "SUB":" : 6",
-              "SUBI":" : 7"}
+              "SUBI":" : 7",
+              "JUMP":" : 8",
+              "NOP":" : 9",}
 
 count = 0
 n = 0
@@ -28,6 +33,7 @@ for line in Lines:
         split = line.strip().split(" ")
         result.write(str(hex(n)).upper()[2:] + conversion[split[0]] + split[1] + "\n")
         print(line.strip())
+        #print(split)
         n = n+1
     except:
         pass
