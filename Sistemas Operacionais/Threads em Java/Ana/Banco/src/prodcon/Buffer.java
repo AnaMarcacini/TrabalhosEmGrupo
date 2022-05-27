@@ -1,16 +1,13 @@
 package prodcon;
 
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Buffer {
-	// Dados manipulados pelo consumidor e produtor
-	// Uma fila de capacidade 1 números
-	private static final float CAPACITY = 1;
-	private final Queue<Integer> queue = new LinkedList<>();
+	
+	private double Dinheiro_Conta;
+	public double valor_retirado;
 
 	// Variável de lock para acessar a fila compartilhada
 	private final Lock lock = new ReentrantLock();
@@ -20,55 +17,44 @@ public class Buffer {
 	private final Condition bufferNotEmpty = lock.newCondition();
 
 	// Armazena um número na fila
-	public void put(Integer number) throws InterruptedException {
+	public void put(int number) throws InterruptedException {
 		lock.lock();
 		try {
 			// Se buffer estiver cheio, aguarda o consumidor consumir algum número 
-			
 			// devemos mudar a condição para o numero do bufer maior que o pedido
-			while (queue.size() == CAPACITY) {
-				System.out.println(Thread.currentThread().getName() +
-						" : Buffer cheio, aguardando...");
+			while (Dinheiro_Conta > valor_retirado) {//
 				bufferNotEmpty.await();
 			}
-			// Adiciona um número na fila
-			boolean isAdded = queue.offer(number);
-			if (isAdded) {
-				System.out.printf("%s produziu %d na fila%n",
-						Thread.currentThread().getName(), number);
-				// Sinaliza a thread consumidor que ela pode consumir
-				System.out.println(Thread.currentThread().getName() +
-						" : Buffer já tem elemento!");
-				bufferNotFull.signalAll();
-			}
+
 		} finally {
 			lock.unlock();
 		}
 	}
 
 	// Remove um número da fila
-	public void get() throws InterruptedException {
+	public void get() throws InterruptedException { // para o consumidor // quando está vazio
 		lock.lock();
 		try {
 			// Se buffer estiver vazio, aguarda o produtor produzir algum número
-			while (queue.size() == 0) {
+			while (Dinheiro_Conta > valor_retirado) {
 				System.out.println(Thread.currentThread().getName() +
-						" : Buffer vazio, aguardando...");
-				bufferNotFull.await();
+						" : Saldo Insuficiente, aguardando...");
+				bufferNotFull.await(); /// COMANDO DE PARADA
 			}
-			// Remove um número da fila
-			Integer value = queue.poll();
-			if (value != null) {
-				System.out.printf("%s consumiu %d da fila%n",
-						Thread.currentThread().getName(), value);
-				// Sinaliza a thread produtor que ela pode produzir
-				System.out.println(Thread.currentThread().getName() +
-						" : Buffer tem espaço!");
-				bufferNotEmpty.signalAll();
-			}
+			Dinheiro_Conta -= valor_retirado;
+			
 		} finally {
 			lock.unlock();
 		}
 	}
 
 }
+
+
+// public boolean retirar(double valor){
+// 	if(valor > balance) {
+// 		this.buffer.valor_retirado = valor;
+// 	} // esperar buffer
+// 	this.balance -= valor;
+// 	return true;
+// }

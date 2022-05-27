@@ -14,6 +14,7 @@ public class Main {
 
 		Account ac1 = new Account("ContaMariaEPaulo", 1000);
 		Cliente cliente[] = {
+
 			new Cliente("Augustus", ac1),
 			new Cliente("Lucius", ac1),
 			new Cliente("Claudius", ac1),
@@ -22,8 +23,8 @@ public class Main {
 // criar função de pausa -- modelo professor
 
 			
-			for (Cliente customer : cliente) {
-			customer.start();
+			for (Cliente aa : cliente) {
+			aa.start();
 			}
 	}
 
