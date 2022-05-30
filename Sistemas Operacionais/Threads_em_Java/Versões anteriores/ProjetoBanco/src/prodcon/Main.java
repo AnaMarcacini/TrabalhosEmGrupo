@@ -1,10 +1,8 @@
-
-
-/*Trabalho Sistemas Operacionais
+/*
+Trabalho Sistemas Operacionais
 Ana Helena Marcacini RA: 20.01305-0
 Ettore Padula Dalben RA: 20.00387-0
 Pedro Henrique Hein RA: 20.00134-7
-feito pelo VSCode
 */
 
 package bank;
@@ -25,7 +23,7 @@ public class Main {
 
         Signal.handle(new Signal("INT"), // CTRL+C
                 (Signal signal) -> {
-                    System.out.println("\nTerminando a simulação...");
+                    System.out.println("Terminando a simulação...");
                     for (Client cliente : clientes) {
                         System.out.println("Cliente " + cliente.getName() + " encerrando..."
                         );
