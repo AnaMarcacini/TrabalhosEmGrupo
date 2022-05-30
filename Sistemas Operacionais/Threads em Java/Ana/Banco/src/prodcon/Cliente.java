@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Cliente extends Thread {
-    private String nome;
+    //private String nome;
     private Account conta;
     //Buffer buffer; // Referência para buffer compartilhado
     private final int[] valores = {10,20,50,100};
@@ -14,7 +14,6 @@ public class Cliente extends Thread {
 	public Cliente(String nome,Account conta) {
 		super(nome); // chama o construtor de Thread e passa o nome do parâmetro
 		//this.buffer = new Buffer();
-        this.nome = nome;
         this.conta = conta;
         conta.setNclientes(conta.getNclientes()+1);
 

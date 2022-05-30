@@ -4,23 +4,25 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Client extends Thread {
     private Account account;
-    public final Integer[] values = { 10, 20, 50, 100 };
+    public final int[] valores = { 10, 20, 50, 100 };
+    public static int valor;
     
-
+	// Construtor
     public Client(String name, Account account) {
-        super(name);
-        setAccount(account);
+        super(name); // chama o construtor de Thread e passa o nome do parâmetro
+        this.account = account;
+        account.setNclientes(account.getNclientes()+1);
+        
     }
 
     public void execute() throws InterruptedException {
 
-        Integer value = values[ThreadLocalRandom.current().nextInt(0, 4)];
-
+        valor = valores[ThreadLocalRandom.current().nextInt(valores.length)];
 
         if (ThreadLocalRandom.current().nextInt(0, 2) == 1) {
-            account.deposit(value);
+            account.deposit(valor);
         } else{
-            account.withdraw(value);
+            account.withdraw(valor);
         }
     }
 
@@ -28,7 +30,7 @@ public class Client extends Thread {
     public void run() {
         try {
             while (true) {
-                this.execute();
+                execute();
                 Thread.sleep(200);
             }
         }
@@ -45,7 +47,5 @@ public class Client extends Thread {
         return account;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
-    }
+
 }

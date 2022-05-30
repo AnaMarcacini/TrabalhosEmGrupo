@@ -7,11 +7,14 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Account {
     private Integer balance;
+    private int nclientes;
     private final Lock lock = new ReentrantLock();
     private final Condition lowBalance = lock.newCondition();
 
     public Account(Integer value) {
         this.setBalance(value);
+        System.out.println(String.format("Conta criada com saldo inicial de: R$ %i,00", this.balance));
+
     }
 
     // Deposita um valor na conta
@@ -60,4 +63,13 @@ public class Account {
     public void setBalance(Integer balance) {
         this.balance = balance;
     }
+
+
+    public void setNclientes(int nclientes) {
+        this.nclientes = nclientes;
+    }
+    public int getNclientes() {
+        return nclientes;
+    }
+
 }
