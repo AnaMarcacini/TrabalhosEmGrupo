@@ -40,12 +40,4 @@ public class Client extends Thread {
 
     }
 
-
-
-    // gets e Sets
-    public Account getAccount() {
-        return account;
-    }
-
-
 }

@@ -11,9 +11,9 @@ public class Account {
     private final Lock lock = new ReentrantLock();
     private final Condition lowBalance = lock.newCondition();
 
-    public Account(Integer value) {
-        this.setBalance(value);
-        System.out.println(String.format("Conta criada com saldo inicial de: R$ %i,00", this.balance));
+    public Account(Integer saldoInicial) {
+        this.balance = saldoInicial;
+        System.out.println("Conta criada com saldo inicial de: R$ "+ this.balance +",00");
 
     }
 
@@ -22,9 +22,9 @@ public class Account {
         lock.lock(); 
 
         try {
-            setBalance(value + getBalance());
+            this.balance = value + this.balance;
             System.out.println("Cliente: " + Thread.currentThread().getName() + " depositou " + value);
-            System.out.println("Conta: saldo atualizado de " + getBalance());
+            System.out.println("Conta: saldo atualizado de " + this.balance);
             lowBalance.signalAll(); // "Acorda" demais Threads que estejam "dormindo"
  
             return true;
@@ -41,14 +41,14 @@ public class Account {
         lock.lock();
         try{
             // "Dorme" enquanto o valor da conta for insuficiente para ser retirado
-            while(value > getBalance()){
+            while(value > this.balance){
                 System.out.println("Saldo insuficiente, esperando...");
                 lowBalance.await();
             }  
             
-            setBalance(getBalance() - value);
+            this.balance = this.balance - value;
             System.out.println("Cliente: " + Thread.currentThread().getName() + " retirou " + value);
-            System.out.println("Conta: saldo atualizado de " + getBalance());
+            System.out.println("Conta: saldo atualizado de " + this.balance);
             return true;
         }
         finally{
@@ -56,15 +56,7 @@ public class Account {
         }
     }
 
-    public Integer getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Integer balance) {
-        this.balance = balance;
-    }
-
-
+    
     public void setNclientes(int nclientes) {
         this.nclientes = nclientes;
     }
