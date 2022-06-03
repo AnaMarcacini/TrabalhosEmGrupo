@@ -12,7 +12,7 @@ from ctypes.wintypes import PINT
 file1 = open('code_imt.txt', 'r')
 Lines = file1.readlines()
 
-result = open('asmimt.cdm', 'w')
+result = open('asmimttrabalho.cdm', 'w')
 
 conversion = {"HLT":" : 00",
               "STO":" : 1",
