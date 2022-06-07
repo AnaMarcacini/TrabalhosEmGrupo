@@ -23,15 +23,15 @@ typedef struct arranjo{
 //____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 int main(){
-    int opcao, valor, anterior, validaNUM, valido, ValInit[4][3] = Valores_Iniciais, auxint = L;
-    // menu ; do dado, endereço, ver se é numero, retorno(ver se é numero), valores iniciais (facilitar a inicalização), tamanho da lista
-    Arranjo removido, lista[Tamanho_Lista], auxi;
+    int opcao, valor, validaNUM, valido, ValInit[4][3] = Valores_Iniciais, auxint = L;
+    // menu ; do dado, endereço, ver se é numero, retorno(ver se é numero), valores ini     ciais (facilitar a inicalização), tamanho da lista
+    Arranjo lista[Tamanho_Lista], auxi;
     char validaSTR[1];
 
     for(auxint = 0; auxint < Tamanho_Lista; auxint++){
-        lista[auxint].proximo = -0;
-        lista[auxint].chave = -0;
-        lista[auxint].anterior = -0;
+        lista[auxint].proximo = -9999999;
+        lista[auxint].chave = -9999999;
+        lista[auxint].anterior = -9999999;
     }
 
     do{
@@ -48,9 +48,9 @@ int main(){
 
                     // Zerar a lista
                     for(int x = 0; x<Tamanho_Lista; x++){
-                        lista[x].chave = -0;
-                        lista[x].anterior = -0;
-                        lista[x].proximo = -0;
+                        lista[x].chave = -9999999;
+                        lista[x].anterior = -9999999;
+                        lista[x].proximo = -9999999;
                     }
 
                     printf("Lista padrão? [s/n]\n");
@@ -72,10 +72,10 @@ int main(){
                             scanf("%s", &validaSTR);
                             valor = validar(validaSTR, valido);
 
-                            if(valor != -0){
+                            if(valor != -9999999){
                                 auxi.proximo = -1;
                                 auxi.chave = valor;
-                                auxi.anterior = -0;
+                                auxi.anterior = -9999999;
                                 inserir(lista, auxi);
                             } else{
                                 x--;
@@ -98,10 +98,10 @@ int main(){
                 scanf("%s", &validaSTR);
                 valor = validar(validaSTR, valido);
 
-                if(valor != -0){
+                if(valor != -9999999){
 					auxi.proximo = -1;
 					auxi.chave = valor;
-					auxi.anterior = -0;
+					auxi.anterior = -9999999;
                     inserir(lista, auxi);
                     imprimir(lista);
                 }
@@ -134,7 +134,7 @@ Arranjo inserir(Arranjo arranjo[], Arranjo add){
     auxint = L;
     
     for(int x = 0; x<Tamanho_Lista; x++){
-        if(arranjo[x].chave==-0){
+        if(arranjo[x].chave==-9999999){
             break;
         } else{
             printf("A lista está cheia!\n");
@@ -158,7 +158,7 @@ Arranjo inserir(Arranjo arranjo[], Arranjo add){
     } else if(add.proximo == -1){
         auxint = rand() % 8;
 
-        while(arranjo[auxint].chave != -0){
+        while(arranjo[auxint].chave != -9999999){
             auxint = rand() % 8;
         }
         for(int x = 0; x<Tamanho_Lista; x++){
@@ -195,9 +195,9 @@ Arranjo remover(Arranjo arranjo[], int chave){
         if(arranjo[x].chave==chave){
             arranjo[arranjo[x].anterior].proximo = arranjo[x].proximo;
             arranjo[arranjo[x].proximo].anterior = arranjo[x].anterior;
-            arranjo[x].proximo = -0;
-            arranjo[x].chave = -0;
-            arranjo[x].anterior = -0;
+            arranjo[x].proximo = -9999999;
+            arranjo[x].chave = -9999999;
+            arranjo[x].anterior = -9999999;
             auxint = x;
         }
     }
@@ -217,7 +217,7 @@ void imprimir(Arranjo arranjo[]){
     int auxint = init;
     Arranjo aux;
     aux = arranjo[init];
-    if(aux.proximo != -0){
+    if(aux.proximo != -9999999){
         printf("\n=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=\n");
         printf("§Próximo:\t");
 
@@ -253,14 +253,14 @@ int validar(char invalidado[], int valido){
 	
     if(strlen(invalidado)>9){
         printf("Valor muito grande!");
-        return -0;
+        return -9999999;
     }
 
     valido = strtol(invalidado, &fim, 10);
 
     if(fim == invalidado || *fim != '\0'){
         printf("Valor inválido!\n");
-        return -0;
+        return -9999999;
     } else{
         return valido;
     }
