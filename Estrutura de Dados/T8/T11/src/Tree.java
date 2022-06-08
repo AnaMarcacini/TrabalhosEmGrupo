@@ -1,44 +1,23 @@
-public class Tree {
+public class Tree{
     Node_Tree root;
     int size;
     
-    public Tree() {
+    public Tree(){
         this.root = null;
         this.size = 0;
     }
 
-
-    public void insert_root(Integer valor) {
+    public void insert_root(Integer valor){
         Node_Tree node = new Node_Tree(valor);
         this.root = node;
         this.size = 1;
     }
 
-
-
-
-
-
-
-    
-
-
-    public Node_Tree getRoot() {
+    public Node_Tree getRoot(){
         return root;
     }
 
-    public int getSize() {
+    public int getSize(){
         return size;
     }
-
-
-
-
-
-
-
-
-
-
-
 }

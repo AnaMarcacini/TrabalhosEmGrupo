@@ -1,5 +1,5 @@
-public class App {
-    public static void main(String[] args) throws Exception {
+public class App{
+    public static void main(String[] args) throws Exception{
 
         Tree x = new Tree(); 
         x.insert_root(5);
@@ -8,15 +8,13 @@ public class App {
         Node_Tree no_3 = new Node_Tree(7);
         Node_Tree no_4 = new Node_Tree(1);
         Node_Tree no_5 = new Node_Tree(2); 
-
         Node_Tree no_6 = new Node_Tree(8);
         Node_Tree no_7 = new Node_Tree(0);
         Node_Tree no_8 = new Node_Tree(6);
         Node_Tree no_9 = new Node_Tree(21);
         Node_Tree no_10 = new Node_Tree(12);
 
-
-                /*
+        /*
         Node_Tree no_10 = new Node_Tree(2); 
         Node_Tree no_11 = new Node_Tree(4);
         Node_Tree no_12 = new Node_Tree(3);
@@ -50,22 +48,22 @@ public class App {
         no_9.next = no_10;//irmão 12
         no_10.parent = no_6; 
        
-/*
+        /*
         no_2.firstChild = no_4;
         no_4.parent = no_2;
         no_4.next = no_5;
         no_5.parent = no_2; 
-       
-*/
+        */
+
         x.root.imprimeFilhos();
         no_5.imprimeFilhos();
-        no_6.imprime();
+        no_6.imprimeFilhosFolhas();
 
-        
+        no_5.imprimeFilhos();
+        no_8.imprime_Pai();
+        no_8.dobraFilhos();
+        no_2.dobraPai();
     }
-
-
-
 }
 
 /*
@@ -79,7 +77,4 @@ no_2.firstChild = no_4;
 no_4.parent = no_2;
 no_4.next = no_5;
 no_5.parent = no_2; 
-
-
-
 */
