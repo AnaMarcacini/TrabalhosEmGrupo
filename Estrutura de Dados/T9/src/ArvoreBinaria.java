@@ -33,111 +33,132 @@ public class ArvoreBinaria{
 		System.out.println(this.conteudo);
     }
 	//2
-	public void InOrder(){
+	public void inOrder(){
         if(this.fi1 != null){
-            this.fi1.InOrder();
+            this.fi1.inOrder();
 		}
 
         System.out.println(this.conteudo);
 
         if (this.fi2 != null){
-            this.fi2.InOrder();
+            this.fi2.inOrder();
 		}
     }
     //3
 	public void dadoNaArvore(Integer k){
-		if(this.conteudo == k){
+        ArvoreBinaria aux = this;
+		if(aux.conteudo == k){
 			System.out.println("\nTem na Árvore");
 			return;
 		}
-		if(this.fi1 != null){
-			this.fi1.dadoNaArvore(k);
+		if(aux.fi1 != null){
+			aux.fi1.dadoNaArvore(k);
 		}
-		if(this.fi2 != null){
-			this.fi2.dadoNaArvore(k);
+		if(aux.fi2 != null){
+			aux.fi2.dadoNaArvore(k);
 		}
 		//	System.out.println("\nNão tem na Árvore");
 	}
 	//4
-	public void maiorValor(){
-		Integer x = 0;
-		if(this.conteudo > x){
-			x = this.conteudo;
-			System.out.println("\nO maior valor é: "+x);
-		}
-		this.fi1.maiorValor();
-		this.fi2.maiorValor();
+	public int maiorValor(int x){
+        if(this.conteudo > x){
+            x = this.conteudo;
+        }
+        if(this.fi1 != null){
+            x = this.fi1.maiorValor(x);
+        }
+        if(this.fi2 != null){
+            x = this.fi2.maiorValor(x);
+        }
+
+        return x;
 	}
+    //5
+    public int menorValor(int x){
+        if(this.conteudo < x){
+            x = this.conteudo;
+        }
+        if(this.fi1 != null){
+            x = this.fi1.menorValor(x);
+        }
+        if(this.fi2 != null){
+            x = this.fi2.menorValor(x);
+        }
+        return x;
+	}
+    //6
+    public float[] medAri(float x[]){
+        x[0] += this.conteudo;
+        x[1]++;
 
-	
+        if(this.fi1 != null){
+            x = this.fi1.medAri(x);
+        }
+        if(this.fi2 != null){
+            x = this.fi2.medAri(x);
+        }
+        return x;
+	}
+    //7
+    public int qntNull(int x){
+        if(this.fi1 != null){
+            x = this.fi1.qntNull(x);
+        } else{
+            x++;
+        }
+        if(this.fi2 != null){
+            x = this.fi2.qntNull(x);
+        } else{
+            x++;
+        }
+        return x;
+	}
+    //8
+    public int qntNos(int x){
+        if(this != null){
+            x++;
+        }
 
+        if(this.fi1 != null){
+            x = this.fi1.qntNos(x);
+        }
+            
+        if(this.fi2 != null){
+            x = this.fi2.qntNos(x);
+        }
 
-    public void imprimeFilhos(){
-        if (this.fi1 == null)
-            System.out.println("O Node (" + this.conteudo + ") não tem filhos....");
-        else{
-            ArvoreBinaria trab = this.fi1;
-            while (trab != null){
-                System.out.println(trab.conteudo);
-                trab = trab.fi2;
-            }
+        return x;
+	}
+    //9
+    public int qntFolhas(int x){
+        if(this.fi1 == null && this.fi2 == null){
+            x++;
         }
-    }
-    
-    public ArvoreBinaria pai() {
-        if (this.anterior == null)
-            return null;
-        else 
-            return (this.anterior);
-    }
-    
-    public void imprime_Pai(){
-        if (this.anterior != null)
-            System.out.println("Pai: " + this.anterior.conteudo);
-        else
-            System.out.println("Este nó (" + this.conteudo + ") é root, não tem pai...");
-    } 
-   
-    public boolean ehInterno(){
-        if (this.fi1 != null)
-            return true;
-        else 
-            return false;
-    }
-    
-    public void imprimeFilhosFolhas(){
-        ArvoreBinaria trab = this.fi1;
-        int i = 0;
-        while (true){
-            if (trab != null){
-                if (trab.fi1 == null){
-                    i++;
-                    System.out.println("Filho-Folha " + i + ": " + trab.conteudo);
-                }
-                trab = trab.fi2;
-            } else{
-                break;
-            }
+
+        if(this.fi1 != null){
+            x = this.fi1.qntFolhas(x);
         }
-    }
-    
-    
-    
-    public ArvoreBinaria dobraFilhos(){
-        if (this.fi1 != null){
-            ArvoreBinaria trab = this.fi1;
-            while (trab != null){
-                trab.conteudo *= 2;
-                trab = trab.fi2;
-            }
+            
+        if(this.fi2 != null){
+            x = this.fi2.qntFolhas(x);
         }
-        return this;
-    }
-    
-    public ArvoreBinaria dobraPai(){
-        if (this.anterior != null){
-            this.anterior.conteudo *= 2;
+
+        return x;
+	}
+    //10
+    public int altura(int x){
+        if(this.fi1 != null || this.fi2 != null){
+            x++;
         }
-        return this;
-    } 
+
+        if(this.fi1 != null){
+            x = this.fi1.altura(x);
+        }
+            
+        if(this.fi2 != null){
+            x = this.fi2.altura(x);
+        }
+
+        return x;
+	}
 }

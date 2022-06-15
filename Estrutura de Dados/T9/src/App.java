@@ -10,7 +10,6 @@ public class App{
         ArvoreBinaria no5 = new ArvoreBinaria(5);
         ArvoreBinaria no6 = new ArvoreBinaria(6); 
 
-        //1
         x.root.fi1 = no1;
         no1.anterior = x.root;
 
@@ -29,8 +28,6 @@ public class App{
         no3.fi2 = no6;
         no6.anterior = no3;
 
-        //2
-        /*
         System.out.println("\nPre-Order");
         x.root.preOrder();
 
@@ -38,12 +35,23 @@ public class App{
         x.root.posOrder();
         
         System.out.println("\nIn-Order");
-        x.root.InOrder();
-        */
+        x.root.inOrder();
 
-        //3
-        x.root.dadoNaArvore(9);
+        x.root.dadoNaArvore(6);
 
-        x.root.maiorValor();
+        System.out.println("\nO maior valor é: "+x.root.maiorValor(-9999999));
+
+        System.out.println("\nO menor valor é: "+x.root.menorValor(9999999));
+
+        float[] y = x.root.medAri(new float[] {0,0});
+        System.out.println("\nO valor médio é: "+ y[0]/y[1]);
+
+        System.out.println("\nHá "+x.root.qntNull(0)+" Nulls na árvore");
+
+        System.out.println("\nHá "+x.root.qntNos(0)+" Nós na árvore");
+
+        System.out.println("\nHá "+x.root.qntFolhas(0)+" folhas na árvore");
+
+        System.out.println("\nHá "+x.root.altura(0)+" níveis na árvore");
     }
 }
