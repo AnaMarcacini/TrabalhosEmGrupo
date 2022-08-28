@@ -14,6 +14,7 @@ public class Hash_01{
 		tabAluno[8] = new Aluno(80,"Sara");
 		tabAluno[9] = new Aluno(90,"Davi");
 
+		Integer coli = 0;
 		Integer hashCode = null, chave;
 		Aluno[] tabHash = new Aluno[10];
 		for (int i=0; i<tabAluno.length; i++ ){
@@ -25,6 +26,7 @@ public class Hash_01{
 			if(tabHash[hashCode] == null ){
 				tabHash[hashCode] = tabAluno[i];
 			} else{
+				coli++;
 				System.out.println("** Colisao no slot da Tabela Hash ** " );
 				System.out.println("Chave " + tabAluno[i].getCodAluno() +
 									" NAO ARMAZENADA NA TABELA HASH ...\n " );
@@ -36,20 +38,27 @@ public class Hash_01{
 		for(int i = 0 ; i < tabAluno.length; i++){
 			System.out.print ("Slot " + i + " ---> " + tabAluno[i].getCodAluno()
 								+ " " + tabAluno[i].getNome() + '\n');
-			System.out.println("\nTabela HASH: ");
 			System.out.println("--------------------------");
 		}
+
+		System.out.println("\nTabela HASH: ");
+		System.out.println("--------------------------");
 
 		for (int i = 0 ; i < tabHash.length; i++){
 			if(tabHash[i] == null){
 				System.out.println("Slot " + i + " ---> Valor nulo");
+				System.out.println("--------------------------");
 			} else{
 				System.out.print ("Slot " + i + " ---> " +
-				tabHash[i].getCodAluno() + " " + tabHash[i].getNome() + '\n');
+									tabHash[i].getCodAluno() + " " + tabHash[i].getNome() + '\n');
+				System.out.println("--------------------------");
 			}
 		}
-	}
 
+		System.out.println("Colisões: " + coli);
+	}
 	public static Integer hash(Integer key){
+		// hash h = mod(n)
+		return key%10;
 	}
 }
