@@ -1,74 +1,52 @@
-public class main{
+public class main {
 	public static void main(String[] args){
 
-		Slist[] tabKeys = new Slist[100000];
-		Slist[] tabHash = new Slist[1000];
-
-		tabKeys[0] = new Slist(10);
-		tabKeys[1] = new Slist(21);
-		tabKeys[2] = new Slist(22);
-		tabKeys[3] = new Slist(24);
-		tabKeys[4] = new Slist(35);
-		tabKeys[5] = new Slist(60);
-		tabKeys[6] = new Slist(44);
-		tabKeys[7] = new Slist(57);
-		tabKeys[8] = new Slist(80);
-		tabKeys[9] = new Slist(90);
+		Integer[] tabChaves = new Integer[] {23, 45, 77, 11, 33, 49, 10, 4, 89, 14} ;
+		Integer[] tabhash = new Integer[10];
 
 		Integer coli = 0;
-		Integer hashCode = null, chave;
-		for (int i=0; i<tabKeys.length; i++){
-			if(tabKeys[i] != null){
-				chave = (tabKeys[i].getCodAluno());
-			} else{
-				break;
-			}
+		Integer hashCode = null;
+		for(int chave : tabChaves){
 			hashCode = hash(chave);
-			System.out.println("Chave = " + chave + " mapeada para hascode = " + hashCode);
-
-			if(tabHash[hashCode] == null ){
-				tabHash[hashCode] = tabKeys[i];
+			if(tabhash[hashCode] == null){
+				tabhash[hashCode] = chave;
 			} else{
 				coli++;
-				tabHash[hashCode].InsereInicio(chave);
-				System.out.println("** Colisao no slot da Tabela Hash ** " );
-				System.out.println("Chave " + tabKeys[i].getCodAluno() + " FOI ENCADEADA\n" );
+				if(rehashing(tabhash, hashCode) == null){
+					System.out.println("\n=============================================\n" + 
+										"Tabela Hash está lotada, encerrando operação\n" +
+										"=============================================\n");
+					break;
+				}
+				tabhash[rehashing(tabhash, hashCode)] = chave;
 			}
 		}
-
-		System.out.println("\nTabela Keys: ");
-		System.out.println("--------------------------");
-		for(int i = 0 ; i < tabKeys.length; i++){
-			if(tabKeys[i] != null){
-				System.out.print ("Slot " + i + " ---> " + tabKeys[i].getCodAluno() + '\n');
-				System.out.println("--------------------------");
-			} else{
-				break;
-			}
-		}
-
-		System.out.println("\nTabela HASH: ");
-		System.out.println("--------------------------");
-
-		for (int i = 0 ; i < tabHash.length; i++){
-			if(tabHash[i] == null){
+		System.out.println("Colisões: " + coli);
+		
+		for (int i = 0 ; i < tabhash.length; i++){
+			if(tabhash[i] == null){
 				System.out.println("Slot " + i + " ---> Valor nulo");
 				System.out.println("--------------------------");
 			} else{
-				System.out.print ("Slot " + i + " ---> " + tabHash[i].getCodAluno() + '\n');
-				if(tabHash[i].Colidido()){
-					for(int j = 1 ; j < tabHash[i].tmnColi(); j++){
-						System.out.println("\t|---" + tabHash[i].getColi()[j]);
-					}
-				}
+				System.out.print ("Slot " + i + " ---> " + tabhash[i] + '\n');
 				System.out.println("--------------------------");
 			}
 		}
-
-		System.out.println("Colisões: " + coli);
 	}
 	public static Integer hash(Integer key){
 		// hash h = mod(n)
 		return (key%10);
+	}
+
+	public static Integer rehashing(Integer[] tabhash, Integer indice) {
+			for (Integer i = indice + 1 ; i < tabhash.length ; i ++) {
+			if (tabhash[i] == null )
+			return i;
+		}
+			for (Integer i = 0 ; i < indice ; i++ ) {
+			if (tabhash[i] == null )
+			return i;
+		}
+			return null;
 	}
 }
