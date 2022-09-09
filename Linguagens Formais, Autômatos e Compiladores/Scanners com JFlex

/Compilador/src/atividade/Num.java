@@ -1,4 +1,4 @@
-package exemplo1;
+package atividade;
 
 // Token de número
 public class Num extends Token {

@@ -1,4 +1,4 @@
-package exemplo1;
+package atividade;
 
 // Classe mais geral de token
 public class Token {

@@ -1,4 +1,4 @@
-package exemplo1;
+package atividade;
 
 // Token de operador relacional
 public class Relop extends Token {

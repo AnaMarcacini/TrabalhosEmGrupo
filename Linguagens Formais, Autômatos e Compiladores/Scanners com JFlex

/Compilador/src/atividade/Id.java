@@ -1,4 +1,4 @@
-package exemplo1;
+package atividade;
 
 // Token de identificador
 public class Id extends Token {

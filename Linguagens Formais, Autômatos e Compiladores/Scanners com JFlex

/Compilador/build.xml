@@ -1,15 +1,15 @@
-<project name="Exemplo1" default="dist" basedir=".">
+<project name="Compilador" default="dist" basedir=".">
     <description>
         Script Ant para compilar projetos com JFlex
     </description>
     <!-- Propriedades globais -->
-    <property name="jflexFile" value="exemplo1.jflex" />
-    <property name="package" value="exemplo1" />
+    <property name="jflexFile" value="atividade.jflex" />
+    <property name="package" value="atividade" />
     <property name="mainClass" value="Lexer" />
     <condition property="runMainClass" value="${package}.${mainClass}" else="${mainClass}">
         <isset property="package"/>
     </condition>
-    <property name="jarFile" value="exemplo1.jar" />
+    <property name="jarFile" value="atividade.jar" />
     <property name="src" location="src" />
     <property name="tools" location="tools" />
     <property name="jflex" location="jflex" />
