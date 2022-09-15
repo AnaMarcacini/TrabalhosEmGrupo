@@ -28,6 +28,9 @@ digit	= [0-9]
 number	= {digit}+(\.{digit}+)?([Ee][+-]?{digit}+)?
 letter  = [A-Za-z]
 id      = {letter}({letter}|{digit})*
+//PontEVirgula = ";" // add
+
+
 %%
 
 {ws}		{ /* ignorar */ }
@@ -40,3 +43,5 @@ id      = {letter}({letter}|{digit})*
 "/"             {return new Token(Tag.DIV, yyline, yycolumn);}
 "("             {return new Token(Tag.LPAREN, yyline, yycolumn);}
 ")"             {return new Token(Tag.RPAREN, yyline, yycolumn);}
+
+";"             {return new Token(Tag.PontEVirgula, yyline, yycolumn);}

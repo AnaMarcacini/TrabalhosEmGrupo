@@ -53,7 +53,7 @@ public class Parser {
             error(tag);
         }
     }
-
+/* ANTIGO
     // função que inicia a análise sintática descendente
     // recursiva
     public void parse() throws Exception {
@@ -66,6 +66,71 @@ public class Parser {
             error(Tag.EOF);
         }
     }
+ */
+//_______________________ EDITs Ana__________________________________
+
+    // REGRA: term = factor, tprime;
+    private void program() throws Exception {
+        System.out.println("term():");
+
+        expr();
+        accept(token.tag);;
+    }
+
+
+    public void parse() throws Exception {
+        // REGRA: goal = expr;
+        program();
+        // se, depois de expr() o token for EOF, tudo deu certo!
+        if (token.tag == Tag.EOF) {
+            System.out.println("Análise sintática terminada com sucesso!");
+        } else {
+            error(Tag.EOF);
+        }
+    }
+
+
+     // REGRA Antiga: factor = '(', expr, ')' | number | id;
+     // REGRA: factor = '(', expr, ')' |'-',expr | number | id;
+//Tag.MINUS
+     private void factor() throws Exception {
+        System.out.println("factor():");
+
+        switch (token.tag) {
+            case LPAREN:
+                accept(Tag.LPAREN);
+                expr();
+                accept(Tag.RPAREN);
+                break;
+            case NUMBER:
+                accept(Tag.NUMBER);
+                break;
+            case ID:
+                accept(Tag.ID);
+                break;
+
+
+    //edit
+            case MINUS://edit
+                accept(Tag.MINUS);
+                expr();
+
+
+
+
+
+            default:
+                error(new Tag[] { Tag.LPAREN, Tag.NUMBER, Tag.ID });
+                break;
+        }
+    }
+
+
+    //+ edit factor - abaixo \/
+
+// _______________________________________________________________
+
+
 
     // REGRA: expr = term, eprime;
     private void expr() throws Exception {
@@ -102,7 +167,7 @@ public class Parser {
             factor();
         }
     }
-
+/* FACTOR ANTIGO
     // REGRA: factor = '(', expr, ')' | number | id;
     private void factor() throws Exception {
         System.out.println("factor():");
@@ -124,4 +189,5 @@ public class Parser {
                 break;
         }
     }
+    */
 }

@@ -4,3 +4,9 @@ a+b
 
 a+b*(c-10.5+(5-a**(2/b)))/3  -- > a+b*(c-10.5+(5-a**(2/b)))/3
 
+EDITS TRABALHO
+
+teste.input
+Parser.java
+scanner.jflex
+tag.java
