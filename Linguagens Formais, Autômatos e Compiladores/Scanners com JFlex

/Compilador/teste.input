@@ -1,9 +1,0 @@
-if x < 3
-	x = 0
-else
-	y = 6.02E23
-
-"Cadeia de caracteres"
-	_12 = 12
-	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa = 12
-	
