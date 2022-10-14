@@ -1,14 +1,22 @@
 // Especificação do parser CUP
 package parser;
 import java_cup.runtime.*;
+import java.util.HashMap;
+
+parser code {:
+        private HashMap<String, Double> symbolTable = new HashMap<>();
+:}
+
 // Definição dos terminais
 terminal            ERROR, SEMI, PLUS, MINUS, TIMES, DIVIDE, MOD;
-terminal            UMINUS, LPAREN, RPAREN;
-terminal Integer    NUMBER;
+terminal            UMINUS, LPAREN, RPAREN, ASSIGN;
+terminal Double     NUMBER;
+terminal String     ID;
 // Definição dos não-terminais
-non terminal            expr_list, expr_part;
-non terminal Integer    expr;
+non terminal           expr_list, expr_part;
+non terminal Double    expr;
 // Precedência e associatividade dos operadores
+precedence right ASSIGN
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE, MOD;
 precedence left UMINUS;
@@ -34,4 +42,15 @@ expr ::= expr:e1 PLUS expr:e2
     | MINUS expr:e {: RESULT = -e;
                     :} %prec UMINUS
     | LPAREN expr:e RPAREN {: RESULT = e; :}
+    | ID:id ASSIGN expr:e (:
+                symbolTable.put(id, e);
+                RESULT = e;
+        :)
+    | ID:id (:
+                Double valor = symbolTable.get(id);
+                if (valor == null){
+                        System.out.println("Variável não iniciada!");
+                }
+                Result = valor;
+        :)
     ;

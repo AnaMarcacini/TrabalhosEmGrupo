@@ -26,7 +26,8 @@ import java_cup.runtime.*;
 %}
 
 ws = [\ \t\f\r\n]
-number = [0-9]+
+number = \d+(\.\d+)?(["E""e"]["+""-"]?\d+)?
+id = [A-Za-z][A-Za-z0-9]*
 %%
 ";"         { return symbol(sym.SEMI); }
 "+"         { return symbol(sym.PLUS); }
@@ -36,8 +37,11 @@ number = [0-9]+
 "%"         { return symbol(sym.MOD); }
 "("         { return symbol(sym.LPAREN); }
 ")"         { return symbol(sym.RPAREN); }
-{number}    { return symbol(sym.NUMBER, Integer.valueOf(yytext())); }
+"="         { return symbol(sym.ASSIGN); }
+{id}        { return symbol(sym.ID, yytext()); }
+{number}    { return symbol(sym.NUMBER, Double.valueOf(yytext())); }
 {ws}        {/* Ignore */}
-.           { return symbol(sym.ERROR, yytext()); }
+.           { return symbol(sym.ERROR, yytext()); } // mudar linha para throw
+
 
 
