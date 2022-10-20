@@ -9,7 +9,7 @@ parser code{:
 // ^ possibilidade de momorizar o valor das minhas variaveis ^^^- por exemplo x=10 e depois y = 2*x
 // Definição dos terminais
 terminal            SEMI, PLUS, MINUS, TIMES, DIVIDE, MOD;
-terminal            UMINUS, LPAREN, RPAREN, ASSIGN,VEZES;
+terminal            UMINUS, LPAREN, RPAREN, ASSIGN;
 terminal Double    NUMBER;
 terminal String    ID;
 
@@ -21,7 +21,7 @@ non terminal Double    expr;
 precedence right ASSIGN;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE, MOD;
-precedence left UMINUS;
+precedence left UMINUS, POTENCIA;
 // Regras da gramática
 //ASSIGN = ; colocar no analisador lexico
 //                RESULT e; -- devolve a resposta
