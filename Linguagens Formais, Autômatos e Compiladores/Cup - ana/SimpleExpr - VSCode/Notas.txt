@@ -2,3 +2,4 @@ Alteração nos arquivos : cup e scanner
 
 Math.sin(a);
 Math.cos(a);
+Math.PI
