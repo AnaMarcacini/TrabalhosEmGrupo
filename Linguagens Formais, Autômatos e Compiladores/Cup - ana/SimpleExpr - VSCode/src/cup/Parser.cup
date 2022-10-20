@@ -18,7 +18,7 @@ non terminal            expr_list, expr_part;
 non terminal Double    expr;
 // Precedência e associatividade dos operadores
 // PRIORIDADE MAIS BAIXA ESTÁ A CIMA (PRIMEIRO RESOLVE A OPERAÇÃO E DEPOIS SALVA O ID)
-precedence right ASSIGN;
+precedence right ASSIGN,SIM;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE, MOD;
 precedence left UMINUS, POTENCIA;
@@ -48,7 +48,8 @@ expr ::= expr:e1 PLUS expr:e2
             {: RESULT = e1 % e2; :}
     | expr:e1 POTENCIA expr:e2
             {: RESULT = Math.pow(e1, e2); :}
-
+    | SIM expr:e2
+            {: RESULT = Math.sin(e2); :}
     | NUMBER:n {: RESULT = n; :}
     | MINUS expr:e {: RESULT = -e;
                     :} %prec UMINUS
