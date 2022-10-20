@@ -9,7 +9,7 @@ parser code{:
 // ^ possibilidade de momorizar o valor das minhas variaveis ^^^- por exemplo x=10 e depois y = 2*x
 // Definição dos terminais
 terminal            SEMI, PLUS, MINUS, TIMES, DIVIDE, MOD;
-terminal            UMINUS, LPAREN, RPAREN, ASSIGN,POTENCIA, SIM;
+terminal            UMINUS, LPAREN, RPAREN, ASSIGN,POTENCIA, SIM, COS;
 terminal Double    NUMBER;
 terminal String    ID;
 
@@ -18,7 +18,7 @@ non terminal            expr_list, expr_part;
 non terminal Double    expr;
 // Precedência e associatividade dos operadores
 // PRIORIDADE MAIS BAIXA ESTÁ A CIMA (PRIMEIRO RESOLVE A OPERAÇÃO E DEPOIS SALVA O ID)
-precedence right ASSIGN,SIM;
+precedence right ASSIGN,SIM,COS;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE, MOD;
 precedence left UMINUS, POTENCIA;
@@ -50,6 +50,9 @@ expr ::= expr:e1 PLUS expr:e2
             {: RESULT = Math.pow(e1, e2); :}
     | SIM expr:e2 RPAREN
             {: RESULT = Math.sin(e2); :}
+    | COS expr:e2 RPAREN
+            {: RESULT = Math.cos(e2); :}
+
     | NUMBER:n {: RESULT = n; :}
     | MINUS expr:e {: RESULT = -e;
                     :} %prec UMINUS
