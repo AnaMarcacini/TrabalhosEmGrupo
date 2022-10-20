@@ -9,7 +9,7 @@ parser code{:
 // ^ possibilidade de momorizar o valor das minhas variaveis ^^^- por exemplo x=10 e depois y = 2*x
 // Definição dos terminais
 terminal            SEMI, PLUS, MINUS, TIMES, DIVIDE, MOD;
-terminal            UMINUS, LPAREN, RPAREN, ASSIGN,POTENCIA;
+terminal            UMINUS, LPAREN, RPAREN, ASSIGN,POTENCIA, SIM;
 terminal Double    NUMBER;
 terminal String    ID;
 
@@ -48,7 +48,7 @@ expr ::= expr:e1 PLUS expr:e2
             {: RESULT = e1 % e2; :}
     | expr:e1 POTENCIA expr:e2
             {: RESULT = Math.pow(e1, e2); :}
-    | SIM expr:e2
+    | SIM expr:e2 RPAREN
             {: RESULT = Math.sin(e2); :}
     | NUMBER:n {: RESULT = n; :}
     | MINUS expr:e {: RESULT = -e;
