@@ -10,11 +10,11 @@ public interface sym {
   /* terminals */
   public static final int MINUS = 4;
   public static final int DIVIDE = 6;
+  public static final int POTENCIA = 12;
   public static final int UMINUS = 8;
   public static final int NUMBER = 13;
   public static final int MOD = 7;
   public static final int SEMI = 2;
-  public static final int VEZES = 12;
   public static final int EOF = 0;
   public static final int PLUS = 3;
   public static final int ID = 14;
@@ -36,7 +36,7 @@ public interface sym {
   "LPAREN",
   "RPAREN",
   "ASSIGN",
-  "VEZES",
+  "POTENCIA",
   "NUMBER",
   "ID"
   };

@@ -789,7 +789,7 @@ class Scanner implements java_cup.runtime.Scanner {
             // fall through
           case 27: break;
           case 14:
-            { return symbol(sym.VEZES);
+            { return symbol(sym.POTENCIA);
             }
             // fall through
           case 28: break;

@@ -37,7 +37,6 @@ id = [A-Za-z][A-Za-z0-9]*
 "-"         { return symbol(sym.MINUS); }
 "*"         { return symbol(sym.TIMES); }
 "**"        { return symbol(sym.POTENCIA); }//
-
 "/"         { return symbol(sym.DIVIDE); }
 "%"         { return symbol(sym.MOD); }
 "("         { return symbol(sym.LPAREN); }
