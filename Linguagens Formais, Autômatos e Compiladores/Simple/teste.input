@@ -1,0 +1,10 @@
+read(a);
+read(b);
+
+if a != b then
+{
+    printa + b);
+} else
+{
+    print(a - b);
+}
